@@ -1,0 +1,14 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block fos_user_content %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+		    <h3>Créer un compte</h3>
+			{% include "@FOSUser/Registration/register_content.html.twig" %}
+		</div>
+	</div>
+</div>
+
+{% endblock fos_user_content %}
