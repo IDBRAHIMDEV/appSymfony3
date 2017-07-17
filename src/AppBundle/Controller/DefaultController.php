@@ -28,4 +28,8 @@ class DefaultController extends Controller
         // replace this example code with whatever you need
         return $this->render('default/admin.html.twig', []);
     }
+
+    public function testGit() {
+        echo 'salam les amis';
+    }
 }
