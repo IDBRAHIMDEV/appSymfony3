@@ -1,7 +1,8 @@
-	{% extends 'base.html.twig' %}
+	{% extends 'back.html.twig' %}
 
+  
 
-	{% block body %}
+	{% block content %}
      
 
      <h1>page pour Admin</h1>
@@ -16,3 +17,15 @@
      </ul>
 
 	 {% endblock %}
+
+
+   {% block breadcrumb %}
+
+      <ul class="breadcrumb">
+        <li>  <a href="">Tableau de bord</a> </li>
+        <li class="active">Liste des catégories</li>
+      </ul>
+
+   {% endblock %}
+
+
