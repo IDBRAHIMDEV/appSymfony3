@@ -187,3 +187,4 @@ class Category
         return $this->updateAt;
     }
 }
+

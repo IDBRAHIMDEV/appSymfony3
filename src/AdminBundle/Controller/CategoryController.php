@@ -48,7 +48,7 @@ class CategoryController extends Controller
             $em->persist($category);
             $em->flush();
 
-            return $this->redirectToRoute('admin_category_show', array('id' => $category->getId()));
+            return $this->redirectToRoute('admin_category_index');
         }
 
         return $this->render('category/new.html.twig', array(
@@ -88,7 +88,7 @@ class CategoryController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_category_edit', array('id' => $category->getId()));
+            return $this->redirectToRoute('admin_category_index');
         }
 
         return $this->render('category/edit.html.twig', array(
