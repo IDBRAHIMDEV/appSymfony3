@@ -65,7 +65,7 @@
       </div>
        
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-2">
           
           <ul class="list-group">
             <li class="list-group-item"><a href="">Tableau de bord</a></li>
@@ -81,8 +81,15 @@
           </ul>
 
         </div>
-        <div class="col-md-9">
-          {% block content %}{% endblock %}
+        <div class="col-md-10 well">
+          
+          {{ include('alert.html.twig') }}
+
+          {% block content %}
+             
+
+
+          {% endblock %}
         </div>
       </div>
     </div>

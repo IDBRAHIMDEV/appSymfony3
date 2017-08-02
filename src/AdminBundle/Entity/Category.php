@@ -4,6 +4,8 @@ namespace AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * Category
  *
@@ -23,21 +25,21 @@ class Category
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Merci de mettre une libellé")
      * @ORM\Column(name="libelle", type="string", length=120)
      */
     private $libelle;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Merci de mettre une description")
      * @ORM\Column(name="description", type="string", length=255, nullable=true)
      */
     private $description;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Merci de mettre un slug")
      * @ORM\Column(name="slug", type="string", length=180, nullable=true)
      */
     private $slug;

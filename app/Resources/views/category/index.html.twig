@@ -1,6 +1,8 @@
 {% extends 'back.html.twig' %}
 
 {% block content %}
+
+
     <h3>Liste des Categories</h3>
 
     <div class="pull-right">
@@ -25,7 +27,7 @@
                 <td nowrap="nowrap">{{ category.libelle }}</td>
                 
                 <td nowrap="nowrap">{{ category.slug }}</td>
-                <td>{{ category.description }}</td>
+                <td>{{ category.description | slice(0, 80) }} ...</td>
                
                 <td>
                    
@@ -38,6 +40,11 @@
         {% endfor %}
         </tbody>
     </table>
+
+
+       <div class="navigation">
+           {{ knp_pagination_render(categories) }}
+       </div>
 
 {% endblock %}
 
