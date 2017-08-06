@@ -24,7 +24,14 @@ class PostType extends AbstractType
                        'widget' => 'single_text',
                        'format' => 'yyyy-MM-dd',
                        'data'   => new \DateTime()
-                    ));
+                    ))
+                ->add('categories', EntityType::class, array(
+                    'class' => 'AdminBundle\Entity\Category',
+                    'choice_label' => 'libelle',
+                    'expanded' => false,
+                    'multiple' => true
+                ))
+                ;
     }
     
     /**
