@@ -5,41 +5,28 @@
 
      <a class="btn btn-primary" href="{{ path('admin_post_new') }}">Nouveau Post</a>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Body</th>
-                <th>Slug</th>
-                <th>Datepublish</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
+
+
+        <div class="row">
         {% for post in posts %}
-            <tr>
-                <td><a href="{{ path('admin_post_show', { 'id': post.id }) }}">{{ post.id }}</a></td>
-                <td>{{ post.title }}</td>
-                <td>{{ post.description }}</td>
-                <td>{{ post.body }}</td>
-                <td>{{ post.slug }}</td>
-                <td>{% if post.datepublish %}{{ post.datepublish|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('admin_post_show', { 'id': post.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('admin_post_edit', { 'id': post.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
+
+                 
+                  <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                      <img src="{{ asset('uploads/posts/' ~ post.image) }}"  alt="">
+                      <div class="caption">
+                        <h3>{{ post.title }}</h3>
+                        <p>{{ post.description | slice(0, 80) }} ...</p>
+                        <p><a href="{{ path('admin_post_show', { 'id': post.id }) }}" class="btn btn-primary" role="button">Afficher</a> 
+                        <a href="{{ path('admin_post_edit', { 'id': post.id }) }}" class="btn btn-warning" role="button">Editer</a></p>
+                      </div>
+                    </div>
+                  </div>
+                
+           
         {% endfor %}
-        </tbody>
-    </table>
+        </div>
+      
 
     
 {% endblock %}

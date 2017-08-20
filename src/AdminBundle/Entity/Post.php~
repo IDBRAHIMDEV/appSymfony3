@@ -3,6 +3,7 @@
 namespace AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Post
@@ -62,6 +63,15 @@ class Post
      * @ORM\ManyToMany(targetEntity="AdminBundle\Entity\Category")
      */
     private $categories;
+
+    
+     /**
+     *
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank(message="Merci de mettre une image !")
+     * @Assert\File(mimeTypes={"image/png", "image/jpeg"})
+     */
+    private $image;
 
 
     /**
@@ -193,5 +203,45 @@ class Post
     {
         return $this->datepublish;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add category
+     *
+     * @param \AdminBundle\Entity\Category $category
+     *
+     * @return Post
+     */
+    public function addCategory(\AdminBundle\Entity\Category $category)
+    {
+        $this->categories[] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param \AdminBundle\Entity\Category $category
+     */
+    public function removeCategory(\AdminBundle\Entity\Category $category)
+    {
+        $this->categories->removeElement($category);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+}
