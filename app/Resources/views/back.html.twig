@@ -56,11 +56,13 @@
         <div class="col-md-4">
           {% block breadcrumb %}{% endblock %}
         </div>
-        <div class="col-md-8" align="right">
-          <select name="accesRapide" id="">
-            <option value="">Nouveau article</option>
-            <option value="">Nouvelle catégorie</option>
+        <div class="col-md-8" align="right" id="app">
+         {% verbatim %}
+          <select v-on:change="getAccesRapide" name="accesRapide" v-model="accesRapide">
+            <option v-for="acces in listAccesRapide" v-bind:value="acces.lien">{{ acces.libelle }}</option>
+            
           </select>
+          {% endverbatim %}
         </div>
       </div>
        
@@ -86,7 +88,9 @@
         <div class="col-md-10 well">
           
           {{ include('alert.html.twig') }}
-
+          
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe totam voluptatum officiis, odio voluptate eaque ducimus quod assumenda laborum pariatur eum alias libero deleniti sapiente aliquam numquam illo necessitatibus corrupti!
+      
           {% block content %}
              
 
@@ -95,7 +99,27 @@
         </div>
       </div>
     </div>
+        
+        <script src="{{ asset('js/vue.min.js') }}"></script>
 
+        <script>
+            var myApp = new Vue({
+              el: "#app",
+              data: {
+                accesRapide: "",
+                listAccesRapide: [
+                    {libelle: "Accès rapide", lien: ""},
+                    {libelle: "Nouveau article", lien: "/admin/post/new"},
+                    {libelle: "Nouvelle catégorie", lien: "/admin/category/new"},
+                ]
+              },
+              methods: {
+                getAccesRapide: function(){
+                  window.location = this.accesRapide;
+                }
+              }
+            });
+        </script>
         
         {% block javascripts %}{% endblock %}
     </body>
