@@ -14,22 +14,47 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         // replace this example code with whatever you need
+
+        $em = $this->getDoctrine()->getManager();
+        $posts = $em->getRepository('AdminBundle:Post')->findBy([], ['datepublish' => 'desc'], 3, 0);
+
         return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+            'posts' => $posts,
         ]);
     }
 
-
+    
     /**
-     * @Route("/admin/", name="adminpage")
+     * @Route("/blog", name="blog")
      */
-    public function adminAction()
-    {
-        // replace this example code with whatever you need
-        return $this->render('default/admin.html.twig', []);
+    public function blog() {
+
+        $em = $this->getDoctrine()->getManager();
+        $posts = $em->getRepository('AdminBundle:Post')->findAll();
+
+        return $this->render('default/blog.html.twig', [
+            'posts' => $posts,
+        ]);
+
+ 
     }
 
-    public function testGit() {
-        echo 'salam les amis';
+
+
+        /**
+     * @Route("/blog/{id}", name="blog-show")
+     */
+    public function show($id) {
+
+        $em = $this->getDoctrine()->getManager();
+        $post = $em->getRepository('AdminBundle:Post')->find($id);
+
+        return $this->render('default/show.html.twig', [
+            'post' => $post,
+        ]);
+
+ 
     }
+
+
 }
