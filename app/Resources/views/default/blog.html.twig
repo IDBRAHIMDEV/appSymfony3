@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+
+
+<section class="hero is-primary is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Nos meilleurs articles
+      </h1>
+      <h2 class="subtitle">
+        Lorem ipsum dolor sit amet, consectetur.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<div class="container">
+	<div class="columns">
+		<div class="column">
+			
+            {% for post in posts %}
+               
+               <div class="card">
+				  <div class="card-image">
+				    <figure class="image">
+				     <a href="{{ path('blog-show', {'id' : post.id}) }}">
+				         <img src="{{ asset('uploads/posts/' ~ post.image) }}" alt="Placeholder image">
+				     </a>
+				    </figure>
+				  </div>
+				  <div class="card-content">
+				    
+
+				    <div class="content">
+				      <h2 class="title is-2"> 
+				          <a href="{{ path('blog-show', {'id' : post.id}) }}"> 
+					          {{ post.title }}
+					      </a>
+				      </h2>
+				         
+
+				         <p>{{ post.description }}</p>
+
+
+				      <a href="#">#css</a> <a href="#">#responsive</a>
+				      <br>
+				      <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+				    </div>
+				  </div>
+				</div>
+
+            {% endfor %}
+
+		</div>
+</div>
+
+
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
